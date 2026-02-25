@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+:root {
+  --color-bg-dark: #030308;
+  --color-bg-card: rgba(15, 15, 25, 0.4);
+  --color-text-main: #FFFFFF;
+  --color-text-dim: rgba(255, 255, 255, 0.65);
+  --color-text-muted: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(15, 15, 25, 0.4);
+  --nav-bg: rgba(3, 3, 8, 0.8);
+}
+
+:root.light {
+  --color-bg-dark: #FFFFFF;
+  --color-bg-card: #F8FAFC;
+  --color-text-main: #020617;
+  --color-text-dim: #334155;
+  --color-text-muted: #64748b;
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --nav-bg: rgba(255, 255, 255, 0.8);
+}
+
+@theme {
+  /* Brand Colors */
+  --color-brand-primary: #00FF88;
+  --color-brand-primary-deep: #00CC6A;
+  --color-brand-accent: #25D366;
+  --color-brand-secondary: #9BE39E;
+
+  /* Backgrounds mapped to variables */
+  --color-bg-dark: var(--color-bg-dark);
+  --color-bg-card: var(--color-bg-card);
+
+  /* Text mapped to variables */
+  --color-text-main: var(--color-text-main);
+  --color-text-dim: var(--color-text-dim);
+  --color-text-muted: var(--color-text-muted);
+
+  /* Fonts */
+  --font-display: "Outfit", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
+  /* Effects */
+  --shadow-brand: 0 0 30px rgba(0, 255, 136, 0.25);
+  --radius-xl: 32px;
+  --radius-lg: 24px;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-dark text-text-main font-inter antialiased selection:bg-brand-primary/30;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-[var(--glass-bg)] backdrop-blur-3xl border border-[var(--glass-border)] rounded-lg transition-all duration-300;
+  }
+
+  .glass-panel-hover {
+    @apply hover:border-brand-primary/30 hover:bg-white/[0.05] hover:shadow-brand;
+  }
+
+  .vibrant-btn {
+    @apply px-8 py-4 bg-brand-primary text-black font-display font-bold rounded-full transition-all duration-300 transform hover:-translate-y-1 hover:shadow-brand active:scale-95 flex items-center gap-2;
+  }
+
+  .secondary-btn {
+    @apply px-8 py-4 bg-white/5 border border-white/10 text-white font-display font-medium rounded-full transition-all duration-300 hover:bg-white/10 active:scale-95;
+  }
+
+  .vibrant-text {
+    @apply bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent bg-clip-text text-transparent;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-bg-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-brand-primary/50 transition-colors;
+}
+
+/* Base Animations */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
